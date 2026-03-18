@@ -13,16 +13,6 @@ header {
   justify-content: center;
 }
 
-section {
-  background-image: linear-gradient(180deg, rgba(23,220,179,1) 0%, rgba(0,0,0,0) 90%);
-  display: flex;
-  justify-content: center;
-}
-
-section img {
-  max-width: 90%;
-}
-
 .form-evento {
   background-color: #212121;
   padding: 32px, 28px;
