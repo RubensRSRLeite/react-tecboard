@@ -5,41 +5,69 @@ import { Label } from "../Label";
 import { ListaSuspensa } from "../ListaSuspensa";
 import { TituloFormulario } from "../TituloFormulario";
 
-import './formulario-de-evento.estilo.css'
+import "./formulario-de-evento.estilo.css";
 
-export function FormularioDeEvento() {
+export function FormularioDeEvento({ temas }) {
 
-    return (
-      <form className="form-evento">
-        <TituloFormulario>
-          Preencha para criar um novo evento:
-        </TituloFormulario>
-        
-        <div className="campos">
-          <CampoDeFormulario>
-          <Label htmlFor="nomeEvento">
-            Qual o nome do evento
-          </Label>
-          <CampoDeEntrada type="text" id="nome" placeholder='Summer dev hits' nome="nomeEvento"/>
-        </CampoDeFormulario>
-     
+  function aoFormSubmetido(formData) {
+    console.log('criar novo evento TESTE', formData);
+    const evento = {
+        capa: formData.get('capa'),
+        tema: temas.find(function (item) {
+          return item.id == formData.get('tema')
+        }),
+        data: new Date(formData.get('dataEvento')),
+        titulo: formData.get('nomeEvento')
+    }
+    console.log('o evento: ', evento);
+  }
+
+  return (
+    <form className="form-evento" action={aoFormSubmetido}>
+      <TituloFormulario>Preencha para criar um novo evento:</TituloFormulario>
+
+      <div className="campos">
         <CampoDeFormulario>
-          <Label htmlFor="dataEvento">
-            Qual o nome do evento
-          </Label>
-          <CampoDeEntrada type="date" id="dataEvento" placeholder='Summer dev hits' nome="dataEvento"/>
-        </CampoDeFormulario>
-        </div>
-         <CampoDeFormulario>
           <Label htmlFor="nomeEvento">
-            Qual o nome do evento
+            Qual o nome do evento?
           </Label>
-          <ListaSuspensa/>
+          <CampoDeEntrada
+            type="text"
+            id='nomeEvento'
+            placeholder='Summer dev hits'
+            name='nomeEvento'
+          />
         </CampoDeFormulario>
-        <div className="acoes">
-          <Botao>Criar evento</Botao>
-        </div>
-      </form>
-    )
 
+        <CampoDeFormulario>
+          <Label htmlFor="capa">Qual o endereço da imagem de capa ?</Label>
+          <CampoDeEntrada
+            type="text"
+            id='capa'
+            placeholder="http://..."
+            name='capa'
+          />
+        </CampoDeFormulario>
+
+        <CampoDeFormulario>
+          <Label htmlFor="dataEvento">Qual a data do evento?</Label>
+          <CampoDeEntrada
+            type="date"
+            id='dataEvento'
+            placeholder="Summer dev hits"
+            name="dataEvento"
+          />
+        </CampoDeFormulario>
+      </div>
+
+      <CampoDeFormulario>
+        <Label htmlFor="tema">Qual o tema do evento</Label>
+        <ListaSuspensa id="tema" name="tema" itens={temas} />
+      </CampoDeFormulario>
+
+      <div className="acoes">
+        <Botao>Criar evento</Botao>
+      </div>
+    </form>
+  );
 }
