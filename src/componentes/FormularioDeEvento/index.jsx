@@ -5,9 +5,10 @@ import { Label } from "../Label";
 import { ListaSuspensa } from "../ListaSuspensa";
 import { TituloFormulario } from "../TituloFormulario";
 
+
 import "./formulario-de-evento.estilo.css";
 
-export function FormularioDeEvento({ temas }) {
+export function FormularioDeEvento({ temas, aoSubmeter}) {
 
   function aoFormSubmetido(formData) {
     console.log('criar novo evento TESTE', formData);
@@ -19,7 +20,7 @@ export function FormularioDeEvento({ temas }) {
         data: new Date(formData.get('dataEvento')),
         titulo: formData.get('nomeEvento')
     }
-    console.log('o evento: ', evento);
+    aoSubmeter(evento)
   }
 
   return (
