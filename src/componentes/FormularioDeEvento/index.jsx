@@ -5,8 +5,8 @@ import { CampoDeFormulario } from "../CampoDeFormulario";
 import { Label } from "../Label";
 import { ListaSuspensa } from "../ListaSuspensa";
 import { TituloFormulario } from "../TituloFormulario";
-import { Botao } from "../botao";
-
+{//import { Botao } from "../botao";
+}
 
 import "./formulario-de-evento.estilo.css";
 
@@ -69,7 +69,8 @@ export function FormularioDeEvento({ temas, aoSubmeter}) {
       </CampoDeFormulario>
 
       <div className="acoes">
-        <Botao>Criar evento</Botao>
+        {//<Botao>Criar evento</Botao>
+        }
       </div>
     </form>
   );
